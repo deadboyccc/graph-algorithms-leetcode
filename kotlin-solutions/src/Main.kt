@@ -24,7 +24,7 @@ class Solution {
             // Skip if point is already part of the MST
             if (curr in visited) continue
 
-            // Add cheapest available edge to total and mark as visited
+            // Add the cheapest available edge to total and mark as visited
             totalCost += dist
             visited.add(curr)
 
