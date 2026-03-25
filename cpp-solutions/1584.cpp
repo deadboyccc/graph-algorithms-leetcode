@@ -1,4 +1,3 @@
-```cpp
 #include <climits>
 #include <cmath>
 #include <queue>
@@ -68,4 +67,3 @@ class Solution {
     return totalCost;
   }
 };
-```
