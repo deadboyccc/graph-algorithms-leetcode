@@ -12,7 +12,7 @@ class Solution {
     fun validPath(n: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean {
         if (source == destination) return true
 
-        // Build adjacency list idiomaticaly
+        // Build adjacency list idiomatically
         val adj = mutableMapOf<Int, MutableList<Int>>()
         for ((u, v) in edges) {
             adj.getOrPut(u) { mutableListOf() } += v
