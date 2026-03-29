@@ -21,12 +21,17 @@ fun main() {
            │
            └───► C ───► E
      */
+    // bfs
     println(bfs(graph, 'A', 'F')) // Output: true
     println(bfs(graph, 'A', 'Z')) // Output: false
 
     // level order bfs
     println("_".repeat(10))
     orderLevelBfs(adj, 'A')
+
+    // dfs
+    println("_".repeat(10))
+    dfs(graph, 'A')
 
 }
 
@@ -58,10 +63,48 @@ fun orderLevelBfs(adj: Map<Char, List<Char>>, src: Char) {
 
         println("Level $currLevel : $currentLevelList")
         currLevel++
+
     }
 }
 
+fun dfsRecursive(
+    adj: Map<Char, List<Char>>,
+    curr: Char,
+    visited: MutableSet<Char> = mutableSetOf(),
+    res: MutableList<Char> = mutableListOf()
+): List<Char> {
+    if (curr in visited) return res
+
+    visited.add(curr)
+    res.add(curr)
+
+    adj[curr]?.forEach { neighbor ->
+        dfsRecursive(adj, neighbor, visited, res)
+    }
+
+    return res
+}
+
 fun dfs(adj: Map<Char, List<Char>>, src: Char) {
+    val stack = ArrayDeque<Char>().apply { addLast(src) }
+    val visited = mutableSetOf<Char>()
+    val res = mutableListOf<Char>()
+
+    while (stack.isNotEmpty()) {
+        val currChar = stack.removeLast()
+
+
+        if (visited.contains(currChar)) continue
+        visited.add(currChar)
+        res.add(currChar)
+
+        adj[currChar]?.asReversed()?.forEach { neighbor ->
+            if (neighbor !in visited) stack.add(neighbor)
+        }
+
+
+    }
+    println("Res: $res")
 
 
 }
