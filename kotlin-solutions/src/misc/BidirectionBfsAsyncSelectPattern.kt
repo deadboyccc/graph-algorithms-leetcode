@@ -109,6 +109,7 @@ fun generateLayeredGraph(): Map<Char, List<Char>> = mutableMapOf<Char, MutableLi
     }
 
     val layers = listOf('A'..'E', 'F'..'J', 'K'..'O', 'P'..'T', 'U'..'Z').map { it.toList() }
+
     for (i in 0 until layers.size - 1) {
         for (u in layers[i]) {
             for (v in layers[i + 1]) {
