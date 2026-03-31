@@ -53,6 +53,8 @@ fun stringReversal(s: String): String = when {
 }
 
 
+// rev string reversal -> counting X
+
 fun main() {
 //    countdown(5)
 //    val arr = intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
