@@ -1,4 +1,4 @@
-package one46;
+package one45;
 
 /**
  * Example:
@@ -12,8 +12,8 @@ package one46;
  */
 class Solution {
     fun postorderTraversal(root: TreeNode?): List<Int> {
-
-        return emptyList()
+        if (root == null) return emptyList()
+        return postorderTraversal(root.left) + postorderTraversal(root.right) + root.`val`
 
     }
 }
