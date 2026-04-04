@@ -175,7 +175,7 @@ fun countStaircasePermutations(totalSteps: Int): Long {
     return waysToReachOneStepBack
 }
 
-// Anagram generation
+// Anagram generation -- postponed to permutation leetcode
 fun main() {
 //    countdown(5)
 //    val arr = intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
