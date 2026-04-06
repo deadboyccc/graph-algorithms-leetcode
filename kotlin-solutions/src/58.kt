@@ -5,11 +5,11 @@ class Solution {
 
         if (s.isEmpty()) return 0
         var length = 0
-        val newS = s.trimIndent().trimEnd { it == ' ' }
 
+        val trimmedStirng = s.trimIndent().trimEnd { it == ' ' }
 
-        for (i in newS.length - 1 downTo 0) {
-            if (newS[i] == ' ') {
+        for (i in trimmedStirng.length - 1 downTo 0) {
+            if (trimmedStirng[i] == ' ') {
                 break
             }
 
