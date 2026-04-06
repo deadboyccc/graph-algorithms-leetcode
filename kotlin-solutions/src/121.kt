@@ -27,8 +27,8 @@ class Solution {
         var maxProfit = 0
 
         for ((left, right) in (0 until priceList.size / 2).zip((priceList.size - 1) downTo (priceList.size / 2))) {
-            val profit = priceList[right] - priceList[left]
-            maxProfit = maxOf(maxProfit, profit)
+            // cool trick to do two pointers with zip
+            println("left $left - - - Right  $right")
         }
 
         return maxProfit
