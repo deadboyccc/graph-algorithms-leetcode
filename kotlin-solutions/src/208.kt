@@ -1,30 +1,33 @@
-package two08;
+class TrieNode(
+    var isEndOfWord: Boolean = false,
+    val children: MutableMap<Char, TrieNode> = mutableMapOf()
+)
 
 class Trie() {
-    // TODO implement trie
-
+    val root = TrieNode()
 
     fun insert(word: String) {
 
-
+        var currNode = root
+        for (c in word) {
+            currNode = currNode.children.getOrPut(c) { TrieNode() }
+        }
+        currNode.isEndOfWord = true
     }
 
     fun search(word: String): Boolean {
-        return false
-
+        var currNode = root
+        for (c in word) {
+            currNode = currNode.children[c] ?: return false
+        }
+        return currNode.isEndOfWord
     }
 
     fun startsWith(prefix: String): Boolean {
-
-        return false
+        var currNode = root
+        for (c in prefix) {
+            currNode = currNode.children[c] ?: return false
+        }
+        return true
     }
-
 }
-
-/**
- * Your Trie object will be instantiated and called as such:
- * var obj = Trie()
- * obj.insert(word)
- * var param_2 = obj.search(word)
- * var param_3 = obj.startsWith(prefix)
- */
