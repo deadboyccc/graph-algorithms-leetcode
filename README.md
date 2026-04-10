@@ -130,8 +130,5 @@ java -jar 743.jar
 
 ---
 
-## About
-
-Built by (https://github.com/deadboyccc)
 
 > *"Code should first be understood, then optimized."*
