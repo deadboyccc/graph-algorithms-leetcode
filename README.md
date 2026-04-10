@@ -1,78 +1,124 @@
-# LeetCode Solutions
+# leetcode-core
 
-A curated collection of **clear and readable Kotlin solutions** to LeetCode problems.
+> Kotlin LeetCode solutions built for understanding, not just passing.  
+> Clarity-first code paired with deep-dive markdown guides on algorithms and data structures.
 
-The primary goal of this repository is to build strong **algorithmic intuition** and a deep understanding of **data structures** through solutions that are easy to read, reason about, and learn from.
+---
 
-While solutions aim for solid efficiency, **clarity and simplicity are prioritized over micro-optimizations**.
+## What This Repo Is
+
+A personal, actively maintained collection of LeetCode solutions in **Kotlin** (97.8%) with a companion **C++** track — plus a growing library of annotated DSA reference guides written from first principles.
+
+The philosophy: **correctness over cleverness, readability over raw optimization.**  
+Solutions are written the way code should be read in a review — named well, structured clearly, and explained where the logic is non-obvious.
 
 ---
 
 ## Repository Structure
 
-This repository uses a **flat structure** to keep navigation simple and searching fast.  
-All solutions are stored directly in the root directory.
-
-### Naming Convention
-
-Files are named according to their LeetCode problem number:
-
 ```
-[ProblemNumber].kt
+leetcode-core/
+├── kotlin-solutions/     # Primary solution track — idiomatic Kotlin
+├── cpp-solutions/        # C++ companion track
+├── ClaudeExplainMd/      # Deep-dive markdown DSA reference guides
+└── README.md
 ```
 
-Examples:
+### kotlin-solutions
+
+Files are named by LeetCode problem number:
 
 ```
-1.kt
-42.kt
-1114.kt
+1.kt        # Two Sum
+42.kt       # Trapping Rain Water
+1114.kt     # Print in Order (concurrency)
 ```
 
----
-
-## Navigation
-
-You can quickly locate any solution using your editor's search or the command line.
+Find any solution instantly:
 
 ```bash
-# Example: Find the solution for Problem #1 (Two Sum)
-ls 1.kt
+# in your editor: Ctrl+P / Cmd+P, type the problem number
+# on the command line:
+ls kotlin-solutions/743.kt
+```
 
-# Example: Find the solution for Problem #1114 (Print in Order)
-ls 1114.kt
+### ClaudeExplainMd
+
+Standalone markdown references built alongside the solutions.  
+Each guide covers: intuition, annotated implementation, internal mechanics, LeetCode problem walkthroughs, a decision guide, complexity summary, and common pitfalls.
+
+Current guides:
+
+| Guide | Topics Covered |
+|---|---|
+| `kotlin-cp-reference.md` | Fast I/O, byte-buffer reader, buffered output, `nextInt` / `nextString` / `nextLine` internals |
+| `kotlin-trees-reference.md` | Fenwick Tree (1D + 2D), Segment Tree, Lazy Propagation, Generic monoid seg tree |
+| `kotlin-shortest-paths-reference.md` | Dijkstra, Bellman-Ford, SPFA, Floyd-Warshall, path reconstruction |
+
+---
+
+## Problem Categories
+
+| Category | Examples |
+|---|---|
+| Arrays & Strings | Two Sum, Sliding Window, Two Pointers |
+| Graphs | Dijkstra, BFS/DFS, Topological Sort |
+| Dynamic Programming | Knapsack, LIS, Interval DP |
+| Trees | BFS level-order, DFS inversion, BST patterns |
+| Multithreading | Print in Order, Dining Philosophers (JVM concurrency) |
+| Backtracking | N-Queens, Permutations, Subsets |
+| Heap / Priority Queue | Kth Largest, Median Stream, Top K |
+| Bit Manipulation | XOR tricks, Bitmask DP |
+
+---
+
+## Design Standards
+
+**Language**: Kotlin (primary), C++ (companion)
+
+**Naming**: expressive over terse — `settledNodes` not `vis`, `relaxedCost` not `d`
+
+**Style**:
+- Idiomatic Kotlin stdlib (`withIndex`, `groupBy`, `fold`, `buildList`, etc.)
+- Named types over raw primitives where it adds clarity (`data class Edge(val to: Int, val cost: Long)`)
+- Numbered comments on non-trivial algorithm phases
+- No micro-optimizations that obscure intent
+
+**Performance**: solutions target the asymptotically correct complexity class.  
+Constant-factor tuning only when the naive approach would TLE on the given constraints.
+
+---
+
+## Running Solutions
+
+Solutions are standalone Kotlin files.  
+Any of the following work:
+
+```bash
+# IntelliJ / Android Studio — open the file, Run > Run 'MainKt'
+
+# kotlinc CLI
+kotlinc kotlin-solutions/743.kt -include-runtime -d 743.jar
+java -jar 743.jar
+
+# online: paste directly into LeetCode's Kotlin editor
 ```
 
 ---
 
-## Technical Standards
+## Roadmap
 
-**Language**
-
-- Kotlin
-
-**Design Philosophy**
-
-- Prioritize **readability and intuition**
-- Use **clear naming and simple control flow**
-- Prefer **idiomatic Kotlin**
-
-**Performance**
-
-- Solutions aim for reasonable efficiency
-- Clarity is preferred over aggressive micro-optimizations
-
-**Problem Categories**
-
-This repository covers problems from a wide range of topics:
-
-- Arrays & Strings
-- Graphs
-- Dynamic Programming
-- Trees & Binary Search
-- Multithreading
-- And more
+- [ ] Add solutions index with problem names, difficulty, and tags
+- [ ] Expand `ClaudeExplainMd` — Union-Find, Trie, Monotonic Stack, Binary Search patterns
+- [ ] Add JUnit 5 test files alongside solutions
+- [ ] C++ parity for graph and DP sections
 
 ---
+
+## About
+
+Built by [Ahmed](https://github.com/deadboyccc) — Senior Backend Engineer at QiCard, Baghdad.  
+Working toward Staff / Systems Architect at a major tech company.  
+Self-studying a 70-book, 5-phase curriculum spanning JVM internals, distributed systems, and cloud-native architecture.
 
 > *"Code should first be understood, then optimized."*
