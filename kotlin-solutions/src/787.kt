@@ -18,3 +18,88 @@ class Solution {
         return if (prices[dst] == Int.MAX_VALUE) -1 else prices[dst]
     }
 }
+
+
+
+class Solution2 {
+
+    fun findCheapestPrice(
+        numberOfCities: Int,
+        flights: Array<IntArray>,
+        sourceCity: Int,
+        destinationCity: Int,
+        maxStops: Int
+    ): Int {
+
+        val unreachableCost = Int.MAX_VALUE
+
+        var minimumCostToCity =
+            IntArray(numberOfCities) { unreachableCost }
+                .apply { this[sourceCity] = 0 }
+
+        repeat(maxStops + 1) {
+
+            val updatedCostToCity = minimumCostToCity.copyOf()
+
+            for ((departureCity, arrivalCity, flightPrice) in flights) {
+
+                val costToDeparture = minimumCostToCity[departureCity]
+                if (costToDeparture == unreachableCost) continue
+
+                val newCost = costToDeparture + flightPrice
+
+                updatedCostToCity[arrivalCity] =
+                    minOf(updatedCostToCity[arrivalCity], newCost)
+            }
+
+            minimumCostToCity = updatedCostToCity
+        }
+
+        val cheapestPrice = minimumCostToCity[destinationCity]
+
+        return if (cheapestPrice == unreachableCost) -1 else cheapestPrice
+    }
+}
+
+
+class SolutionFP {
+
+    fun findCheapestPrice(
+        numberOfCities: Int,
+        flights: Array<IntArray>,
+        sourceCity: Int,
+        destinationCity: Int,
+        maxStops: Int
+    ): Int {
+
+        val unreachableCost = Int.MAX_VALUE
+
+        var minimumCostToCity =
+            IntArray(numberOfCities) { unreachableCost }
+                .apply { this[sourceCity] = 0 }
+
+        repeat(maxStops + 1) {
+
+            val updatedCostToCity = minimumCostToCity.copyOf()
+
+            flights.forEach { (departureCity, arrivalCity, flightPrice) ->
+
+                minimumCostToCity[departureCity]
+                    .takeIf { it != unreachableCost }
+                    ?.let { costToDeparture ->
+
+                        val newCost = costToDeparture + flightPrice
+
+                        updatedCostToCity[arrivalCity] =
+                            minOf(updatedCostToCity[arrivalCity], newCost)
+                    }
+            }
+
+            minimumCostToCity = updatedCostToCity
+        }
+
+        return minimumCostToCity[destinationCity]
+            .takeIf { it != unreachableCost }
+            ?: -1
+    }
+}
