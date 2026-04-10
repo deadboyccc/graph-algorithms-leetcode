@@ -49,11 +49,26 @@ Each guide covers: intuition, annotated implementation, internal mechanics, Leet
 
 Current guides:
 
-| Guide | Topics Covered |
+| File | Topics Covered |
 |---|---|
-| `kotlin-cp-reference.md` | Fast I/O, byte-buffer reader, buffered output, `nextInt` / `nextString` / `nextLine` internals |
-| `kotlin-trees-reference.md` | Fenwick Tree (1D + 2D), Segment Tree, Lazy Propagation, Generic monoid seg tree |
-| `kotlin-shortest-paths-reference.md` | Dijkstra, Bellman-Ford, SPFA, Floyd-Warshall, path reconstruction |
+| `dijkstra-bellmanFord-floydWarshall.md` | Dijkstra, Bellman-Ford, SPFA, Floyd-Warshall - full annotated implementations, path reconstruction, LeetCode walkthroughs, decision guide |
+| `Dijkstra-ref.md` | Dijkstra deep-dive - heap variants, lazy deletion, State/Edge types, single-source to all-pairs |
+| `Bellman-Ford-FP-Kotlin.md` | Bellman-Ford in idiomatic functional Kotlin - fold-based relaxation, negative cycle detection |
+| `Bidirectional-BFS.md` | Bidirectional BFS - meet-in-the-middle search, word ladder pattern, complexity reduction |
+| `N-Queens.md` | N-Queens backtracking - constraint propagation, bitmask optimization, solution counting |
+| `TwoPointersWindow.md` | Two pointers and sliding window - fixed/variable window, same-direction vs opposite-direction patterns |
+| `common-leetcode-patterns.md` | Catalog of recurring CP patterns - frequency counter, prefix sum, monotonic stack, intervals |
+| `ConstraintsAnalysis.md` | Reading constraints to infer required complexity - n <= 10^6 means O(n log n), etc. |
+| `kotlin-competitive-Programming-io.md` | Competitive programming I/O in Kotlin - fast reader, buffered writer, template structure |
+| `kotlin-fastest-io.md` | Byte-buffer fast I/O - `BufferedInputStream`, `nextInt` / `nextLong` / `nextString` internals |
+| `kotlin-fenwick-segment.md` | Fenwick Tree (1D + 2D), Segment Tree, Lazy Propagation, generic monoid seg tree |
+| `kt-features-leetcode.md` | Kotlin stdlib features for LeetCode - `withIndex`, `groupBy`, `fold`, `buildList`, destructuring |
+| `kt-labels-deep-dive` | Kotlin labeled returns, labeled breaks, and `run`/`let`/`also` scoping in algorithm code |
+| `kt-leetcode-comprehensive-features.md` | Comprehensive Kotlin feature reference for competitive programming and interview contexts |
+| `jvm-kotlin-concurrency-ref.md` | JVM concurrency in Kotlin - coroutines, `ReentrantLock`, `Semaphore`, LeetCode 1114/1115/1116/1117 |
+| `set-mismatch-guide.md` | Set Mismatch (LC 645) - XOR trick, math approach, cycle detection in index mapping |
+| `2073-time-needed-to-buy-tickets.md` | Time Needed to Buy Tickets (LC 2073) - queue simulation vs O(n) closed-form derivation |
+| `Kt-labels-deep-dive` | Kotlin non-local returns, loop labels, and scope function chaining in complex control flow |
 
 ---
 
