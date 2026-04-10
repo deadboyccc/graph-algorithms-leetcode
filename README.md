@@ -1,25 +1,39 @@
 # LeetCode Solutions
 
-A high-performance, streamlined repository containing optimized solutions to LeetCode challenges. This project serves as a centralized archive for mastering data structures, algorithms, and concurrency patterns.
+A curated collection of **clear and readable Kotlin solutions** to LeetCode problems.
+
+The primary goal of this repository is to build strong **algorithmic intuition** and a deep understanding of **data structures** through solutions that are easy to read, reason about, and learn from.
+
+While solutions aim for solid efficiency, **clarity and simplicity are prioritized over micro-optimizations**.
 
 ---
 
-## 🛠 Repository Structure
+## Repository Structure
 
-This repository utilizes a **flat structure** for maximum efficiency, fast navigation, and easy global searching. All solutions are located in the root directory.
+This repository uses a **flat structure** to keep navigation simple and searching fast.  
+All solutions are stored directly in the root directory.
 
-### 📌 Naming Convention
+### Naming Convention
 
-Solutions are named strictly according to their LeetCode problem number:
+Files are named according to their LeetCode problem number:
 
-- `[ProblemNumber].kt`  
-  *(e.g., `1.kt`, `42.kt`, `1114.kt`)*
+```
+[ProblemNumber].kt
+```
+
+Examples:
+
+```
+1.kt
+42.kt
+1114.kt
+```
 
 ---
 
-## 🚀 Navigation
+## Navigation
 
-To find a specific solution, you can use the repository’s file search or the command line:
+You can quickly locate any solution using your editor's search or the command line.
 
 ```bash
 # Example: Find the solution for Problem #1 (Two Sum)
@@ -31,17 +45,34 @@ ls 1114.kt
 
 ---
 
-## 📊 Technical Standards
+## Technical Standards
 
-- **Language:** Kotlin  
-- **Performance:** Every solution is crafted to achieve optimal time and space complexity (`O(N)`, `O(log N)`, etc.)  
-- **Code Quality:** Focus on clean, idiomatic Kotlin and rigorous logic  
-- **Scope:** Comprehensive coverage of all categories, including:
-  - Arrays  
-  - Graphs  
-  - Dynamic Programming  
-  - Multithreading  
+**Language**
+
+- Kotlin
+
+**Design Philosophy**
+
+- Prioritize **readability and intuition**
+- Use **clear naming and simple control flow**
+- Prefer **idiomatic Kotlin**
+
+**Performance**
+
+- Solutions aim for reasonable efficiency
+- Clarity is preferred over aggressive micro-optimizations
+
+**Problem Categories**
+
+This repository covers problems from a wide range of topics:
+
+- Arrays & Strings
+- Graphs
+- Dynamic Programming
+- Trees & Binary Search
+- Multithreading
+- And more
 
 ---
 
-> *“Memento Mori. Write code that lasts.”*
+> *"Code should first be understood, then optimized."*
