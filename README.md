@@ -132,8 +132,6 @@ java -jar 743.jar
 
 ## About
 
-Built by [Ahmed](https://github.com/deadboyccc) — Senior Backend Engineer at QiCard, Baghdad.  
-Working toward Staff / Systems Architect at a major tech company.  
-Self-studying a 70-book, 5-phase curriculum spanning JVM internals, distributed systems, and cloud-native architecture.
+Built by (https://github.com/deadboyccc)
 
 > *"Code should first be understood, then optimized."*
