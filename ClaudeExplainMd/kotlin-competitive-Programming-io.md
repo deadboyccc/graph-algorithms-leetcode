@@ -1,117 +1,183 @@
-# 🚀 Kotlin Competitive Programming I/O & Template Guide
+# 🚀 Kotlin Competitive Programming I/O --- Complete Guide
 
-## 🧠 Overview
+## 🧠 Goal
 
-This guide summarizes the fastest ways to handle input/output in Kotlin
-for competitive programming, along with a **full optimized template
-(Kotlin kit)**.
-
-------------------------------------------------------------------------
-
-# ⚡ 1. Why Fast I/O Matters
-
-In competitive programming: - Input size can be huge (10\^6 -- 10\^7
-numbers) - Default Kotlin I/O is **too slow**
-
-### ❌ Slow methods
-
--   `readLine()`
--   `split()`
--   `Scanner`
--   `println()` inside loops
-
-### ✅ Fast methods
-
--   Buffered input
--   Manual parsing
--   Batched output
+Understand: - ALL input methods in Kotlin - Why some are slow vs fast -
+When to use each - A full **contest-ready Kotlin kit**
 
 ------------------------------------------------------------------------
 
-# 🥇 2. Two Levels of Fast I/O
+# 🥉 1. Slowest: Scanner (DO NOT USE)
 
-## Level 1 (Standard Fast)
+``` kotlin
+import java.util.Scanner
 
-Uses: - BufferedReader - StringTokenizer
+fun main() {
+    val sc = Scanner(System.`in`)
+    val n = sc.nextInt()
+    val arr = IntArray(n) { sc.nextInt() }
 
-### Pros
+    println(arr.sum())
+}
+```
 
--   Easy to write
--   Good for most problems
+## ❌ Why Scanner is Slow
 
-### Cons
+-   Uses regex internally
+-   Parses tokens with heavy abstraction
+-   Lots of object creation
 
--   Still creates Strings
--   Slower than raw parsing
+## 🧠 Mental Model
 
-------------------------------------------------------------------------
-
-## Level 2 (Ultra Fast)
-
-Uses: - BufferedInputStream - Manual byte parsing
-
-### Pros
-
--   No string allocation
--   Extremely fast
--   Handles massive input
-
-### Cons
-
--   Harder to understand
--   More code
+Scanner = "Java enterprise parsing engine"\
+→ Overkill for CP
 
 ------------------------------------------------------------------------
 
-# ⚙️ 3. How Fast Input Works (Simple Explanation)
+# 🥈 2. Medium: readLine + split
 
-### Normal way:
+``` kotlin
+fun main() {
+    val n = readLine()!!.toInt()
+    val arr = readLine()!!.split(" ").map { it.toInt() }
 
-    "123 456".split(" ")
+    println(arr.sum())
+}
+```
 
-➡ creates multiple strings → slow ❌
+## ❌ Why This is Slow
 
-### Fast way:
+-   `split()` creates MANY strings
+-   Each number = new object
+-   High memory pressure
 
-Read raw bytes:
+## Example Breakdown
 
-    '1' '2' '3'
+Input:
 
-Convert manually:
+    1 23 456
 
-    res = res * 10 + digit
+Becomes:
+
+    ["1", "23", "456"]
+
+Then: - Convert each to Int → extra work
 
 ------------------------------------------------------------------------
 
-### Example
+# 🥇 3. Fast: BufferedReader + StringTokenizer
+
+``` kotlin
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.util.StringTokenizer
+
+val br = BufferedReader(InputStreamReader(System.`in`))
+var st = StringTokenizer("")
+
+fun next(): String {
+    while (!st.hasMoreTokens()) {
+        st = StringTokenizer(br.readLine())
+    }
+    return st.nextToken()
+}
+
+fun nextInt(): Int = next().toInt()
+
+fun main() {
+    val n = nextInt()
+    val arr = IntArray(n) { nextInt() }
+
+    println(arr.sum())
+}
+```
+
+## ✅ Why This is Faster
+
+-   Reads large chunks at once
+-   Avoids `split()`
+-   Reuses tokenizer
+
+## 🧠 Inner Working
+
+-   Reads line → `"1 23 456"`
+-   Tokenizer walks through string without creating many objects
+
+------------------------------------------------------------------------
+
+# ⚡ 4. FASTEST: BufferedInputStream (Byte Parsing)
+
+``` kotlin
+import java.io.BufferedInputStream
+
+val input = BufferedInputStream(System.`in`)
+
+fun nextInt(): Int {
+    var c = input.read()
+    while (c <= 32) c = input.read()
+
+    var sign = 1
+    if (c == '-'.code) {
+        sign = -1
+        c = input.read()
+    }
+
+    var res = 0
+    while (c > 32) {
+        res = res * 10 + (c - '0'.code)
+        c = input.read()
+    }
+    return res * sign
+}
+```
+
+## 🚀 Why This is Fastest
+
+-   No Strings created
+-   No tokenization
+-   Pure byte processing
+
+------------------------------------------------------------------------
+
+## 🧠 Step-by-Step Example
 
 Input:
 
     123
 
-Steps: - '1' → res = 1 - '2' → res = 12 - '3' → res = 123
+Processing: - '1' → res = 1 - '2' → res = 12 - '3' → res = 123
 
 ------------------------------------------------------------------------
 
-# ⚡ 4. Fast Output
+# ⚡ 5. Fast Output
 
-### ❌ Slow
+## ❌ Slow
 
-    for (...) println(x)
+``` kotlin
+for (i in 0..n) println(i)
+```
 
-### ✅ Fast
+## ✅ Fast
 
-    StringBuilder → append → print once
+``` kotlin
+val sb = StringBuilder()
+for (i in 0..n) sb.append(i).append('\n')
+print(sb)
+```
+
+## Why Faster?
+
+-   Avoids flushing output repeatedly
+-   Writes once
 
 ------------------------------------------------------------------------
 
-# 🧱 5. FULL KOTLIN CP TEMPLATE (ULTIMATE KIT)
+# 🧱 6. FULL KOTLIN KIT
 
 ``` kotlin
 import java.io.BufferedInputStream
 import java.lang.StringBuilder
 
-// FAST INPUT
 private val input = BufferedInputStream(System.`in`)
 private val buffer = ByteArray(1 shl 16)
 private var len = 0
@@ -162,32 +228,20 @@ fun nextLong(): Long {
     return if (sign == 1) res else -res
 }
 
-// FAST OUTPUT
 private val sb = StringBuilder()
 
-fun print(x: Any) { sb.append(x) }
 fun println(x: Any) { sb.append(x).append('\n') }
-
-// UTIL
-inline fun min(a: Int, b: Int) = if (a < b) a else b
-inline fun max(a: Int, b: Int) = if (a > b) a else b
 
 fun IntArray.read(n: Int) {
     for (i in 0 until n) this[i] = nextInt()
 }
 
-// MAIN
 fun main() {
     val t = nextInt()
-
-    repeat(t) {
-        solve()
-    }
-
+    repeat(t) { solve() }
     print(sb)
 }
 
-// SOLVE
 fun solve() {
     val n = nextInt()
     val arr = IntArray(n)
@@ -202,62 +256,23 @@ fun solve() {
 
 ------------------------------------------------------------------------
 
-# 🧩 6. Example Walkthrough
+# 🏁 7. Final Comparison
 
-### Input
-
-    1
-    5
-    1 2 3 4 5
-
-### Execution
-
--   Reads `t = 1`
--   Reads `n = 5`
--   Reads array
--   Computes sum
-
-### Output
-
-    15
+  Method                Speed          Use
+  --------------------- -------------- ---------------
+  Scanner               ❌ Very Slow   Never
+  readLine + split      ⚠️ Medium      Small input
+  BufferedReader + ST   ✅ Fast        Most problems
+  BufferedInputStream   🚀 Fastest     Heavy input
 
 ------------------------------------------------------------------------
 
-# 🔥 7. When to Use What
+# 💡 Final Advice
 
-  Situation      Method
-  -------------- ----------------
-  Small input    readLine()
-  Medium input   BufferedReader
-  Large input    This template
-
-------------------------------------------------------------------------
-
-# ❗ 8. Common Mistakes
-
--   Using split → memory overhead
--   Printing in loops → slow
--   Mixing input methods → bugs
--   Overcomplicating template
-
-------------------------------------------------------------------------
-
-# 🏁 Final Takeaways
-
+-   Use **BufferedReader + ST** normally
+-   Use **raw input** for heavy problems
 -   Always batch output
--   Avoid string parsing when possible
--   Use raw input for serious contests
--   Keep template simple in your head
 
 ------------------------------------------------------------------------
 
-# 💡 Pro Tip
-
-Speed of typing and clarity matters more than micro-optimizations in
-easy problems.
-
-Use this template mainly for: - Codeforces Div2 C+ - Div1 - ICPC
-
-------------------------------------------------------------------------
-
-End of Guide
+End.
