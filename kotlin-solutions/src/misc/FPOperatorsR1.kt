@@ -26,7 +26,25 @@ fun main() {
     }.also { println(it) }
 
     addSeperator()
+    val isPrimeList = (0..3).associate { num -> Pair(num, num * num) }.flatMap { (num, numSquare) ->
+        if (isPrime(num + numSquare)) listOf(11, num, numSquare, 11)
+        else listOf(0, num, numSquare, 0)
+    }.also { println(it) }
 
+
+}
+
+fun isPrime(n: Int): Boolean {
+    if (n < 2) return false
+    if (n == 2) return true
+    if (n % 2 == 0) return false
+
+    var divisor = 3
+    while (divisor * divisor <= n) {
+        if (n % divisor == 0) return false
+        divisor += 2
+    }
+    return true
 }
 
 fun addSeperator(length: Int = 15) = println("_".repeat(length))
